@@ -1,0 +1,67 @@
+﻿<!--
+  Author:    Ben Kempers & Trevor Koenig
+  Date:      12/6/2022
+  Course:    CS 4540, University of Utah, School of Computing
+  Copyright: CS 4540 and [Ben Kempers and Trevor Koenig] - This work may not be copied for use in Academic Coursework.
+
+  I, Ben Kempers and Trevor Koenig, certify that I wrote this code from scratch and did not copy it in part or whole from
+  another source.  Any references used in the completion of the assignment are cited in my README file.
+
+  File Contents
+
+     EnrollmentTrends cshtml view that displays the specified highcharts GUI 
+-->
+
+@{
+    ViewData["Title"] = "EnrollmentTrends";
+}
+
+@using Microsoft.EntityFrameworkCore
+@inject TAApplication.Data.TAContext _context
+@model TAApplication.Models.CourseEnrollment
+
+@section Scripts{
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highcharts/9.3.2/highcharts.js"></script>
+    <script src="~/js/admin/HighChart.js"></script>
+}
+
+@section Styles{
+    <link href=“https://cdnjs.cloudflare.com/ajax/libs/highcharts/9.3.2/css/highcharts.min.css” rel=”stylesheet” />
+}
+
+<h1>EnrollmentTrends</h1>
+
+
+        <div class="form-group row-md-2" role="group">
+            <label asp-for="dates">Start Date:</label>
+            <input asp-for="dates" type="text" class="form-control" id="start_date" value="Nov 12" required>
+
+            <label asp-for="dates">End Date:</label>
+            <input asp-for="dates" type="text" class="form-control" id="end_date" value="Nov 15" required>
+        </div>
+        <select class="form-select" aria-label="Select a Course" role="group" id="course_select" required>
+            <option value="">Select a Course</option>
+        @foreach (var enrollment in _context.Enrollments.Include(o => o.Course).ToArray())
+            {
+            <option>@enrollment.Course.courseDepartment @enrollment.Course.courseNumber</option>
+        }
+        </select>
+        <button type ="Submit" value="Save" class="btn btn-primary" onclick="enrollment_submit()">
+            <span class="load-spinner spinner-border spinner-border-sm" role="status" aria-hidden="true" style="display:none"></span>
+            <span class="load-spinner sr-only" style="display:none">Saving...</span>
+            <span id="save-text" style="display:block">Get Data</span>
+        </button>
+
+    <figure class="highcharts-figure">
+        <div id="linegraph_container"></div>
+        <p class="highcharts-description">
+            Assignment PS9 - Charting Enrollments over Time
+        </p>
+    </figure>
+
+    <figure class="highcharts-figure">
+        <div id="piegraph_container"></div>
+        <p class="highcharts-description">
+            Assignment PS9 Above & Beyond - Charting Enrollment
+        </p>
+    </figure>

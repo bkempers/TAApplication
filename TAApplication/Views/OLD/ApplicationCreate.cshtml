@@ -1,0 +1,108 @@
+﻿<!--
+  Author:    Ben Kempers & Trevor Koenig
+  Date:      9/8/2022
+  Course:    CS 4540, University of Utah, School of Computing
+  Copyright: CS 4540 and [Ben Kempers and Trevor Koenig] - This work may not be copied for use in Academic Coursework.
+
+  I, Ben Kempers and Trevor Koenig, certify that I wrote this code from scratch and did not copy it in part or whole from
+  another source.  Any references used in the completion of the assignment are cited in my README file.
+
+  File Contents
+
+     Application page for prospective TA students to create and submit an application to be a TA for some specific School of
+     Computing class.
+-->
+
+@{
+    ViewData["Title"] = "Application Create";
+}
+    <header>
+        <h2 class="secondary_header">TA Application Create</h2>
+        <p class="secondary_header_paragraph">
+            Fill out below forms to apply to be a TA applicant to the School of Computing.
+        </p>
+    </header>
+
+    <div class=" m-5 d-grid gap-3">
+        <form class="row g-3" id="application_form">
+            <div class="form-floating" id="email_address_form">
+                <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+                <label for="floatingInput">Email address</label>
+            </div>
+            <div class="form-floating" id="phone_number_form">
+                <input type="phone number" class="form-control" id="floatingPassword" placeholder="Phone Number">
+                <label for="floatingPassword">Phone Number</label>
+            </div>
+            <div class="form-floating col-12" id="address_form">
+                <input type="text" class="form-control" id="floatingAddress" placeholder="1234 Main St">
+                <label for="floatingAddress">Address</label>
+            </div>
+            <div class="form-floating col-12" id="address_2_form">
+                <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
+                <label for="inputAddress2" class="form-label">Address 2</label>
+            </div>
+            <div class="form-floating col-md-6" id="city_form">
+                <input type="text" class="form-control" id="inputCity" placeholder="City">
+                <label for="inputCity" class="form-label">City</label>
+            </div>
+            <div class="form-floating col-md-4" id="state_form">
+                <select id="inputState" class="form-select" placeholder="Choose...">
+                    <option>Choose...</option>
+                    <option>California</option>
+                    <option>Idaho</option>
+                    <option>Utah</option>
+                </select>
+                <label for="inputState" class="form-label">State</label>
+            </div>
+            <div class="form-floating col-md-2" id="zip_form">
+                <input type="text" class="form-control" id="inputZip" placeholder="zip">
+                <label for="inputZip" class="form-label">Zip</label>
+            </div>
+            <div class="form-floating col-4" id="position_form">
+                <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea"></textarea>
+                <label for="floatingTextarea">Position Being Sought</label>
+            </div>
+            <div class="form-floating col-4" id="degree_form">
+                <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea"></textarea>
+                <label for="floatingTextarea">Degree Being Pursued</label>
+            </div>
+            <div class="form-floating col-4" id="department_form">
+                <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea"></textarea>
+                <label for="floatingTextarea">Degree Department</label>
+            </div>
+            <div class="mb-3 form-check" id="academic_permission_form">
+                <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                <label class="form-check-label" for="exampleCheck1">Permission to view academic records</label>
+            </div>
+            <div class="form-floating" id="semesters_form">
+                <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea"></textarea>
+                <label for="floatingTextarea">Semesters Completed at University of Utah</label>
+            </div>
+            <div class="form-floating" id="prev_experience_form">
+                <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea"></textarea>
+                <label for="floatingTextarea">Previous Experience Teaching in Years</label>
+            </div>
+            <div class="form-floating" id="hours_desired_form">
+                <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea"></textarea>
+                <label for="floatingTextarea">Maximum Hours Desired</label>
+            </div>
+            <div class="form-floating" id="GPA_form">
+                <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea"></textarea>
+                <label for="floatingTextarea">Current GPA</label>
+            </div>
+            <div class="form-floating" id="personal_statement_form">
+                <textarea class="form-control" placeholder="Write your personal statement here" id="floatingTextarea2"
+                          style="height: 100px"></textarea>
+                <label for="floatingTextarea2">Personal Statement</label>
+            </div>
+            <div class="input-group col-3" id="file_upload_form">
+                <input type="file" class="form-control" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
+                <button class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04">Upload</button>
+            </div>
+            <div class="mb-3 form-check">
+                <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                <label class="form-check-label" for="exampleCheck1">I certify all information is true and correct to the best of my knowledge</label>
+            </div>
+            <button type="submit" class="btn btn-primary col-1">Submit</button>
+        </form>
+    </div>

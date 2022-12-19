@@ -1,0 +1,137 @@
+﻿<!--
+  Author:    Ben Kempers & Trevor Koenig
+  Date:      10/23/2022
+  Course:    CS 4540, University of Utah, School of Computing
+  Copyright: CS 4540 and [Ben Kempers and Trevor Koenig] - This work may not be copied for use in Academic Coursework.
+
+  I, Ben Kempers and Trevor Koenig, certify that I wrote this code from scratch and did not copy it in part or whole from
+  another source.  Any references used in the completion of the assignment are cited in my README file.
+
+  File Contents
+
+     Detail page for a specific course currently being offered
+-->
+
+@model TAApplication.Models.Course
+@using TAApplication.Areas.Data
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<TAUser> SignInManager
+@inject UserManager<TAUser> UserManager
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Course</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.semesterOffered)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.semesterOffered)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.yearOffered)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.yearOffered)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.courseTitle)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.courseTitle)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.courseDepartment)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.courseDepartment)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.courseNumber)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.courseNumber)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.courseSection)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.courseSection)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.courseDescription)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.courseDescription)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.profUNID)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.profUNID)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.profName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.profName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.daysOffered)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.daysOffered)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.timeOffered)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.timeOffered)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.courseLocation)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.courseLocation)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.creditHours)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.creditHours)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.courseEnrollment)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.courseEnrollment)
+        </dd>
+        @if (SignInManager.IsSignedIn(User))
+        {
+            var student = await UserManager.FindByEmailAsync(User.Identity?.Name);
+            var studentRolesList = await UserManager.GetRolesAsync(student);
+            foreach (String role in studentRolesList)
+            {
+                if (role.Equals("Administrator"))
+                {
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.Note)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.Note)
+                    </dd>
+                }
+            }
+        }
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.ID">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

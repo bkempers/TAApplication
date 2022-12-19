@@ -1,0 +1,53 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>aspnet-TAApplication-CB60D400-44DB-4A8D-BD32-7631AE3C9585</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNet.WebApi.Core" Version="5.2.9" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.Google" Version="6.0.10" />
+    <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="6.0.9" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.10" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="6.0.10" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.10" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.10">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.10" />
+    <PackageReference Include="NuGet.CommandLine" Version="6.3.0">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="SendGrid" Version="9.28.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="NuGet.CommandLine" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Views\Applications\Create.cshtml" />
+    <None Include="Views\Applications\Delete.cshtml" />
+    <None Include="Views\Applications\Details.cshtml" />
+    <None Include="Views\Applications\Edit.cshtml" />
+    <None Include="Views\Applications\Index.cshtml" />
+    <None Include="Views\Applications\List.cshtml" />
+    <None Include="Views\OLD\ApplicationCreate.cshtml" />
+    <None Include="Views\OLD\ApplicationDetails.cshtml" />
+    <None Include="Views\OLD\ApplicationList.cshtml" />
+    <None Include="wwwroot\Images\alex.jpg" />
+    <None Include="wwwroot\Images\evan.jpeg" />
+    <None Include="wwwroot\Images\Favicon.ico" />
+    <None Include="wwwroot\Images\Ta_lab.jpg" />
+    <None Include="wwwroot\Images\teacher_assistant1.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Areas\Identity\Data\" />
+  </ItemGroup>
+</Project>

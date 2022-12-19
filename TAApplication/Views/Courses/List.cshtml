@@ -1,0 +1,159 @@
+﻿<!--
+  Author:    Ben Kempers & Trevor Koenig
+  Date:      10/23/2022
+  Course:    CS 4540, University of Utah, School of Computing
+  Copyright: CS 4540 and [Ben Kempers and Trevor Koenig] - This work may not be copied for use in Academic Coursework.
+
+  I, Ben Kempers and Trevor Koenig, certify that I wrote this code from scratch and did not copy it in part or whole from
+  another source.  Any references used in the completion of the assignment are cited in my README file.
+
+  File Contents
+
+     List page for all of the courses currently offered to be a TA for
+-->
+
+@model IEnumerable<TAApplication.Models.Course>
+@using TAApplication.Areas.Data
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<TAUser> SignInManager
+@inject UserManager<TAUser> UserManager
+
+@{
+    ViewData["Title"] = "List";
+}
+
+<h1>List</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.semesterOffered)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.yearOffered)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.courseTitle)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.courseDepartment)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.courseNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.courseSection)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.courseDescription)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.profUNID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.profName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.daysOffered)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.timeOffered)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.courseLocation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.creditHours)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.courseEnrollment)
+            </th>
+            @if (SignInManager.IsSignedIn(User))
+            {
+                var student = await UserManager.FindByEmailAsync(User.Identity?.Name);
+                var studentRolesList = await UserManager.GetRolesAsync(student);
+                foreach (String role in studentRolesList)
+                {
+                    if (role.Equals("Administrator"))
+                    {
+                        <th>
+                            @Html.DisplayNameFor(model => model.Note)
+                        </th>
+                    }
+                }
+            }
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.semesterOffered)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.yearOffered)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.courseTitle)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.courseDepartment)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.courseNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.courseSection)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.courseDescription)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.profUNID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.profName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.daysOffered)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.timeOffered)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.courseLocation)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.creditHours)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.courseEnrollment)
+            </td>
+            @if (SignInManager.IsSignedIn(User))
+            {
+                var student = await UserManager.FindByEmailAsync(User.Identity?.Name);
+                var studentRolesList = await UserManager.GetRolesAsync(student);
+                foreach (String role in studentRolesList)
+                {
+                    if (role.Equals("Administrator"))
+                    {
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Note)
+                        </td>
+                    }
+                }
+            }
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

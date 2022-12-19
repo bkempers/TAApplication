@@ -1,0 +1,119 @@
+﻿<!--
+  Author:    Ben Kempers & Trevor Koenig
+  Date:      10/23/2022
+  Course:    CS 4540, University of Utah, School of Computing
+  Copyright: CS 4540 and [Ben Kempers and Trevor Koenig] - This work may not be copied for use in Academic Coursework.
+
+  I, Ben Kempers and Trevor Koenig, certify that I wrote this code from scratch and did not copy it in part or whole from
+  another source.  Any references used in the completion of the assignment are cited in my README file.
+
+  File Contents
+
+     Create page for a new course
+-->
+
+@model TAApplication.Models.Course
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Course</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="semesterOffered" class="control-label"></label>
+                <select asp-for="semesterOffered"
+                        asp-items="@Html.GetEnumSelectList<Semester>()"
+                class="form-control"></select>
+                <span asp-validation-for="semesterOffered" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="yearOffered" class="control-label"></label>
+                <input asp-for="yearOffered" class="form-control" />
+                <span asp-validation-for="yearOffered" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="courseTitle" class="control-label"></label>
+                <input asp-for="courseTitle" class="form-control" />
+                <span asp-validation-for="courseTitle" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="courseDepartment" class="control-label"></label>
+                <input asp-for="courseDepartment" class="form-control" />
+                <span asp-validation-for="courseDepartment" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="courseNumber" class="control-label"></label>
+                <input asp-for="courseNumber" class="form-control" />
+                <span asp-validation-for="courseNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="courseSection" class="control-label"></label>
+                <input asp-for="courseSection" class="form-control" />
+                <span asp-validation-for="courseSection" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="courseDescription" class="control-label"></label>
+                <input asp-for="courseDescription" class="form-control" />
+                <span asp-validation-for="courseDescription" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="profUNID" class="control-label"></label>
+                <input asp-for="profUNID" class="form-control" />
+                <span asp-validation-for="profUNID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="profName" class="control-label"></label>
+                <input asp-for="profName" class="form-control" />
+                <span asp-validation-for="profName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="daysOffered" class="control-label"></label>
+                <input asp-for="daysOffered" class="form-control" />
+                <span asp-validation-for="daysOffered" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="timeOffered" class="control-label"></label>
+                <input asp-for="timeOffered" class="form-control" />
+                <span asp-validation-for="timeOffered" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="courseLocation" class="control-label"></label>
+                <input asp-for="courseLocation" class="form-control" />
+                <span asp-validation-for="courseLocation" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="creditHours" class="control-label"></label>
+                <input asp-for="creditHours" class="form-control" />
+                <span asp-validation-for="creditHours" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="courseEnrollment" class="control-label"></label>
+                <input asp-for="courseEnrollment" class="form-control" />
+                <span asp-validation-for="courseEnrollment" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Note" class="control-label"></label>
+                <input asp-for="Note" class="form-control" />
+                <span asp-validation-for="Note" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="List">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

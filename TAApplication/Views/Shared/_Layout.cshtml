@@ -1,0 +1,209 @@
+﻿<!--
+  Author:    Ben Kempers & Trevor Koenig
+  Date:      9/8/2022
+  Course:    CS 4540, University of Utah, School of Computing
+  Copyright: CS 4540 and [Ben Kempers and Trevor Koenig] - This work may not be copied for use in Academic Coursework.
+
+  I, Ben Kempers and Trevor Koenig, certify that I wrote this code from scratch and did not copy it in part or whole from
+  another source.  Any references used in the completion of the assignment are cited in my README file.
+
+  File Contents
+
+     Layout page that holds the Navbar and other elements that are used in every other .cshtml page.
+     This page is slightly dynamic in that based on who you are signed in as you will see a different navbar linking to different pages
+-->
+@using TAApplication.Areas.Data
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<TAUser> SignInManager
+@inject UserManager<TAUser> UserManager
+@inject TAApplication.Data.TAContext _context
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - TAApplication</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/TAApplication.styles.css" asp-append-version="true" />
+
+    <!-- Datatable CDN Link -->
+    @section Styles{
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.css">
+    }
+    </head>
+    <body>
+        <header>
+            <nav class="navbar navbar-expand-lg bg-light">
+                <div class="container-fluid">
+                    <input type="image" id="nav_title" src="/Images/Favicon.ico" onclick="location.href=" Index";">
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                        <ul class="navbar-nav flex-grow-1">
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            </li>
+                        @if (SignInManager.IsSignedIn(User))
+                        {
+                            var student = await UserManager.FindByEmailAsync(User.Identity?.Name);
+                            var studentRolesList = await UserManager.GetRolesAsync(student);
+                            foreach (String role in studentRolesList)
+                            {
+                                if (role.Equals("Administrator"))
+                                {
+                                    <li>
+                                        <a class="nav-link text-dark" asp-area="" asp-controller="Applications" asp-action="List">Application List</a>
+                                    </li>
+                                    <li>
+                                        <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="Admin">Admin Page</a>
+                                    </li>
+                                    <li>
+                                        <a class="nav-link text-dark" asp-area="" asp-controller="Applications" asp-action="Index">Index Page</a>
+                                    </li>
+                                    <li>
+                                        <a class="nav-link text-dark" asp-area="" asp-controller="Courses" asp-action="List">Course Page</a>
+                                    </li>
+                                    break;
+                                }
+                                else if (role.Equals("Professor"))
+                                {
+                                    <li>
+                                        <a class="nav-link text-dark" asp-area="" asp-controller="Applications" asp-action="List">Application List</a>
+                                    </li>
+                                    break;
+                                }
+                                else if (role.Equals("Applicant"))
+                                {
+                                    <li>
+                                        <a class="nav-link text-dark" asp-area="" asp-controller="Applications" asp-action="Details">Application Details</a>
+                                    </li>
+                                    <li>
+                                        <a class="nav-link text-dark" asp-area="" asp-controller="Applications" asp-action="Create">Application Create</a>
+                                    </li>
+                                    break;
+                                }
+                            }
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                            </li>
+                        }
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" asp-area="" asp-controller="" asp-action="#" role="button" id="navbarDropdownMenuLink" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                TA
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                @if (SignInManager.IsSignedIn(User))
+                                {
+                                    var student = await UserManager.FindByEmailAsync(User.Identity?.Name);
+                                    <li>@student.Name</li>
+                                }
+                                else
+                                {
+                                    <li>User Name</li>
+                                }
+                                <li>
+                                    <div class="dropdown-divider">PS9</div>PS9
+                                </li>
+                                <li>
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="EnrollmentTrends">Enrollment Trends</a>
+                                </li>
+                                <li>
+                                    <div class="dropdown-divider">PS8</div>PS8
+                                </li>
+                                <li>
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Availabilities" asp-action="Availability">Availabilities Page</a>
+                                </li>
+                                <li>
+                                    <div class="dropdown-divider">PS6</div>PS6
+                                </li>
+                                <li>
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Courses" asp-action="List">Course Page</a>
+                                </li>
+                                @{
+                                    //Course u0000001 = await UserManager.FindByEmailAsync("u0000001@utah.edu");
+                                    var course = _context.Course.FirstOrDefault(o => o.courseNumber == 1400);
+                                    int? firstCourse = null;
+                                    if (course != null) {
+                                        firstCourse = course.ID;
+                                    }
+                                }
+                                <li>
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Courses" asp-action="Details" asp-route-id="@firstCourse">Details Page</a>
+                                </li>
+                                <li>
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Courses" asp-action="Edit" asp-route-id="@firstCourse">Update Page</a>
+                                </li>
+                                <li>
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Courses" asp-action="Create">Create Page</a>
+                                </li>
+                                <li>
+                                    <div class="dropdown-divider">PS5</div>PS5
+                                </li>
+                                <li>
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Applications" asp-action="Index">Index Page</a>
+                                </li>
+                                <li>
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Applications" asp-action="List">Applications List</a>
+                                </li>
+
+                                @{
+                                    TAUser u0000001 = await UserManager.FindByEmailAsync("u0000001@utah.edu");
+                                    var app = _context.Application.FirstOrDefault(o => o.User == u0000001);
+                                    int? Id = null;
+                                    if (app != null)
+                                    {
+                                        Id = app.ID;
+                                    }
+                                }
+                                <li>
+                                    <a class="nav-link text-dark" asp-controller="Applications" asp-action="Details" asp-route-id="@Id">Applications Details</a>
+                                </li>
+
+                                <li>
+                                    <div class="dropdown-divider">Admin</div>Admin
+                                </li>
+                                <li>
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="Admin">Admin Page</a>
+                                </li>
+
+                                <li>
+                                    <div class="dropdown-divider">OLD</div>OLD
+                                </li>
+                                <li>
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="OLD" asp-action="ApplicationList">Application List OLD</a>
+                                </li>
+                                <li>
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="OLD" asp-action="ApplicationCreate">Application Create OLD</a>
+                                </li>
+                                <li>
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="OLD" asp-action="ApplicationDetails">Application Details OLD</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <partial name="_LoginPartial" />
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2022 - TAApplication - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+    @await RenderSectionAsync("Styles", required: false)
+</body>
+</html>

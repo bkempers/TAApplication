@@ -1,0 +1,120 @@
+﻿<!--
+Author:    Ben Kempers & Trevor Koenig
+Date:      9/8/2022
+Course:    CS 4540, University of Utah, School of Computing
+Copyright: CS 4540 and [Ben Kempers and Trevor Koenig] - This work may not be copied for use in Academic Coursework.
+
+I, Ben Kempers and Trevor Koenig, certify that I wrote this code from scratch and did not copy it in part or whole from
+another source.  Any references used in the completion of the assignment are cited in my README file.
+
+File Contents
+
+    This page contains all the information that is important for accepting, declining, and assigning TAs to the apprioate
+    assignment. This page also contains a link back to the main page with a log in button. Additionally this page contains
+    a welcome statement as well as a image which is used as decoration and does not contain information.
+-->
+
+@model IEnumerable<TAApplication.Models.Application>
+
+@{
+    ViewData["Title"] = "List";
+}
+
+<h1>List</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.User.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.currentDegree)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.currentDepartment)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UofU_GPA)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.desiredHours)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.availableBefore)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.numSemesters)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ModificationDate)
+            </th>
+            <!--
+            <th>
+                @Html.DisplayNameFor(model => model.personalStatement)
+            </th>
+            <th>
+                //@Html.DisplayNameFor(model => model.transferSchool)
+            </th>
+            <th>
+                //@Html.DisplayNameFor(model => model.linkedInURL)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.resumeFileName)
+            </th>
+            -->
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+            <tr>
+            <td>
+                <a asp-action="Details" asp-route-id="@item.ID">@Html.DisplayFor(modelItem => item.User.Name)</a>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.currentDegree)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.currentDepartment)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UofU_GPA)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.desiredHours)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.availableBefore)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.numSemesters)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ModificationDate)
+            </td>
+            <!--
+            <td>
+                @Html.DisplayFor(modelItem => item.personalStatement)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.transferSchool)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.linkedInURL)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.resumeFileName)
+            </td>
+            -->
+            <!--
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
+                </td>
+            -->
+        </tr>
+}
+    </tbody>
+</table>

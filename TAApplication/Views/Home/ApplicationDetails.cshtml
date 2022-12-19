@@ -1,0 +1,105 @@
+﻿<!--
+  Author:    Ben Kempers & Trevor Koenig
+  Date:      9/8/2022
+  Course:    CS 4540, University of Utah, School of Computing
+  Copyright: CS 4540 and [Ben Kempers and Trevor Koenig] - This work may not be copied for use in Academic Coursework.
+
+  I, Ben Kempers and Trevor Koenig, certify that I wrote this code from scratch and did not copy it in part or whole from
+  another source.  Any references used in the completion of the assignment are cited in my README file.
+
+  File Contents
+
+     Page that the TA is directed to after clicking on the name of student application in the application list to get
+     a more detailed view of the student's application.
+-->
+
+@{
+    ViewData["Title"] = "Application Details";
+}
+
+    <header>
+        <h2 class="secondary_header">TA Application Details</h2>
+        <p class="secondary_header_paragraph">
+            TA application details for student: Tony Bancker.
+        </p>
+    </header>
+
+    <div class="card" style="max-width: 90%">
+        <div class="row g-3">
+            <div class="col-lg-4">
+                <div class="card mb-3" style="width: 18rem;">
+                    <img src="../Images/evan.jpeg" class="card-img-top" alt="picture of Tony">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <svg width="50" height="50">
+                                <circle cx="25" cy="25" r="20" stroke="black" stroke-width="4" fill="yellow" />
+                            </svg>
+                            Tony Bancker
+                        </h5>
+                        <p class="card-text">UID: u4963469</p>
+                        <p class="card-text">Major: Computer Science</p>
+                        <p class="card-text">Degree: BS</p>
+                        <p class="card-text">
+                            Notes:
+                            <ol>
+                                <li>Overconfident</li>
+                                <li>Crazy kid!</li>
+                        </p>
+                        <a href="#" class="btn btn-danger">Remove Application</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <dl class="row">
+                        <dt class="col-md-3">Email address</dt>
+                        <dd class="col-md-9">bancker.tony34@gmail.com</dd>
+
+                        <dt class="col-md-3">Phone number</dt>
+                        <dd class="col-md-9">(805) 357-1574</dd>
+
+                        <dt class="col-md-3">Street Address</dt>
+                        <dd class="col-md-9">
+                            <p>650 W S Temple Bldg B302</p>
+                        </dd>
+
+                        <dt class="col-md-3">Position Sought</dt>
+                        <dd class="col-md-9">CS 1420 TA</dd>
+
+                        <dt class="col-md-3">Degree Being Pursued</dt>
+                        <dd class="col-md-9">BS</dd>
+
+                        <dt class="col-md-3">Degree Department</dt>
+                        <dd class="col-md-9">
+                            <p>School of Computing</p>
+                        </dd>
+
+                        <div class="mb-3 form-check">
+                            <input type="checkbox" class="form-check-input" id="exampleCheck1" disabled>
+                            <label class="form-check-label" for="exampleCheck1">Permission to release academic records</label>
+                        </div>
+
+                        <dt class="col-md-3">GPA</dt>
+                        <dd class="col-md-9">3.2</dd>
+
+                        <dt class="col-md-3">Semesters Completed</dt>
+                        <dd class="col-md-9">5</dd>
+
+                        <dt class="col-md-3">Previous Experience</dt>
+                        <dd class="col-md-9">None</dd>
+
+                        <dt class="col-md-3">Desired hours</dt>
+                        <dd class="col-md-9">20 hours</dd>
+
+                        <dt class="col-md-3">Personal Statement</dt>
+                        <dd class="col-md-9">
+                            <p>I'm a really cool guy who just likes to kick it with the bros.</p>
+                            <p>I'll make a super good TA.</p>
+                        </dd>
+                    </dl>
+                    <p><small class="text-muted">Application Submitted: September 8, 2022</small></p>
+
+                </div>
+            </div>
+        </div>
+    </div>

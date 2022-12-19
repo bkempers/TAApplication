@@ -1,0 +1,228 @@
+﻿<!--
+Author:    Ben Kempers & Trevor Koenig
+Date:      9/8/2022
+Course:    CS 4540, University of Utah, School of Computing
+Copyright: CS 4540 and [Ben Kempers and Trevor Koenig] - This work may not be copied for use in Academic Coursework.
+
+I, Ben Kempers and Trevor Koenig, certify that I wrote this code from scratch and did not copy it in part or whole from
+another source.  Any references used in the completion of the assignment are cited in my README file.
+
+File Contents
+
+    This page contains all the information that is important for accepting, declining, and assigning TAs to the apprioate
+    assignment. This page also contains a link back to the main page with a log in button. Additionally this page contains
+    a welcome statement as well as a image which is used as decoration and does not contain information.
+-->
+
+@{
+    ViewData["Title"] = "Application List";
+}
+
+    <header>
+        <h2 class="secondary_header">TA Application List</h2>
+        <p class="secondary_header_paragraph">
+            Welcome to the TA Application List Webpage. Use this webpage to evaulate and assign TAs to their approriate
+            position.
+        </p>
+    </header>
+    <div id="application_container">
+        <img id="list_img" src="/Images/TA_Lab.jpg" alt="Picture of TA coding">
+
+        <p id="list_paragraph">
+            The below application table lists out the available applicants wishing to become teaching assistants
+            for the School of Computing. The table is broken into easy to read sections containing key information
+            regarding your decision in whether to hire said applicant or not.
+        </p>
+    </div>
+
+    <div class="table-responsive-md">
+        <!-- Used this website to clarify what tags to use when creating a table:
+        https://www.w3schools.com/html/html_tables.asp -->
+        <table class="table table-striped application_table table-hover">
+            <!-- This website was used to generate filler data:
+            http://www.godwars2.org/SavageWorlds/etu.php -->
+            <tr>
+                <th id="status">Application Status</th>
+                <th id="notes">Notes</th>
+                <th id="name">Name</th>
+                <th id="evals">Prior Evaluations</th>
+                <th id="employed">Employed In</th>
+                <th id="applications">Amount of Previous Apps</th>
+                <th id="degree">Degree</th>
+                <th id="major">Major</th>
+                <th id="gpa">GPA</th>
+                <th id="extraciricular">Extracircic</th>
+                <th id="data">Date Applied</th>
+            </tr>
+            <tr>
+                <td>
+                    <svg width="50" height="50">
+                        <circle cx="25" cy="25" r="20" stroke="black" stroke-width="2" fill="green" />
+                    </svg>
+                </td>
+                <td>None</td>
+                <td><a href="/ApplicationDetails">Emil</a></td>
+                <td>Good</td>
+                <td>CS 2420</td>
+                <td>2</td>
+                <td>BS</td>
+                <td>CS</td>
+                <td>3.2</td>
+                <td>None</td>
+                <td>8/10/2022</td>
+            </tr>
+            <tr>
+                <td>
+                    <svg width="50" height="50">
+                        <circle cx="25" cy="25" r="20" stroke="black" stroke-width="2" fill="yellow" />
+                    </svg>
+                </td>
+                <td>Strong</td>
+                <td><a href="/ApplicationDetails">Carmen Coburn</a></td>
+                <td>N/A</td>
+                <td>Waiting</td>
+                <td>0</td>
+                <td>MS</td>
+                <td>CE</td>
+                <td>3.7</td>
+                <td>Women in STEM club</td>
+                <td>8/13/2022</td>
+            </tr>
+            <tr>
+                <td>
+                    <svg width="50" height="50">
+                        <circle cx="25" cy="25" r="20" stroke="black" stroke-width="2" fill="yellow" />
+                    </svg>
+                </td>
+                <td>Overconfident</td>
+                <td><a href="/ApplicationDetails">Tony Bancker</a></td>
+                <td>Good</td>
+                <td>Waiting</td>
+                <td>1</td>
+                <td>BS</td>
+                <td>CS</td>
+                <td>3.2</td>
+                <td>None</td>
+                <td>8/12/2022</td>
+            </tr>
+            <tr>
+                <td>
+                    <svg width="50" height="50">
+                        <circle cx="25" cy="25" r="20" stroke="black" stroke-width="2" fill="green" />
+                    </svg>
+                </td>
+                <td>None</td>
+                <td><a href="/ApplicationDetails">Debra Tordoff</a></td>
+                <td>Satisfactory</td>
+                <td>CS 4400</td>
+                <td>4</td>
+                <td>PhD</td>
+                <td>CS</td>
+                <td>4.0</td>
+                <td>Cheerleader</td>
+                <td>8/28/2022</td>
+            </tr>
+            <tr>
+                <td>
+                    <svg width="50" height="50">
+                        <circle cx="25" cy="25" r="20" stroke="black" stroke-width="2" fill="red" />
+                    </svg>
+                </td>
+                <td>Independent</td>
+                <td><a href="/ApplicationDetails">Agustina Lizardo</a></td>
+                <td>Unsatisfactory</td>
+                <td>Denied</td>
+                <td>2</td>
+                <td>MS</td>
+                <td>CS</td>
+                <td>3.5</td>
+                <td>None</td>
+                <td>8/28/2022</td>
+            </tr>
+            <tr>
+                <td>
+                    <svg width="50" height="50">
+                        <circle cx="25" cy="25" r="20" stroke="black" stroke-width="2" fill="yellow" />
+                    </svg>
+                </td>
+                <td>None</td>
+                <td><a href="/ApplicationDetails">Penelope Brooks</a></td>
+                <td>Good</td>
+                <td>waiting</td>
+                <td>1</td>
+                <td>BS</td>
+                <td>CS</td>
+                <td>3.3</td>
+                <td>None</td>
+                <td>8/28/2022</td>
+            </tr>
+            <tr>
+                <td>
+                    <svg width="50" height="50">
+                        <circle cx="25" cy="25" r="20" stroke="black" stroke-width="2" fill="yellow" />
+                    </svg>
+                </td>
+                <td>None</td>
+                <td><a href="/ApplicationDetails">Ignacio Raymundo</a></td>
+                <td>N/A</td>
+                <td>Waiting</td>
+                <td>0</td>
+                <td>BS</td>
+                <td>CE</td>
+                <td>3.0</td>
+                <td>Flag Football</td>
+                <td>8/28/2022</td>
+            </tr>
+            <tr>
+                <td>
+                    <svg width="50" height="50">
+                        <circle cx="25" cy="25" r="20" stroke="black" stroke-width="2" fill="green" />
+                    </svg>
+                </td>
+                <td>Great with Students</td>
+                <td><a href="/ApplicationDetails">Nicola O'Rielly</a></td>
+                <td>Good</td>
+                <td>CS 4400</td>
+                <td>2</td>
+                <td>MS</td>
+                <td>CS</td>
+                <td>3.2</td>
+                <td>Cheerleader</td>
+                <td>8/28/2022</td>
+            </tr>
+            <tr>
+                <td>
+                    <svg width="50" height="50">
+                        <circle cx="25" cy="25" r="20" stroke="black" stroke-width="2" fill="yellow" />
+                    </svg>
+                </td>
+                <td>Rebel</td>
+                <td><a href="/ApplicationDetails">Kimberly Sweatt</a></td>
+                <td>Outstanding</td>
+                <td>Waiting</td>
+                <td>4</td>
+                <td>BS</td>
+                <td>CS 2420</td>
+                <td>4.0</td>
+                <td>Climbing</td>
+                <td>8/28/2022</td>
+            </tr>
+            <tr>
+                <td>
+                    <svg width="50" height="50">
+                        <circle cx="25" cy="25" r="20" stroke="black" stroke-width="2" fill="yellow" />
+                    </svg>
+                </td>
+                <td>Friendly</td>
+                <td><a href="/ApplicationDetails">Christian Jenkins</a></td>
+                <td>N/A</td>
+                <td>Waiting</td>
+                <td>0</td>
+                <td>BS</td>
+                <td>CE</td>
+                <td>3.8</td>
+                <td>N/A</td>
+                <td>8/28/2022</td>
+            </tr>
+        </table>
+    </div>

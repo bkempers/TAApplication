@@ -1,0 +1,166 @@
+﻿<!--
+  Author:    Ben Kempers & Trevor Koenig
+  Date:      10/6/2022
+  Course:    CS 4540, University of Utah, School of Computing
+  Copyright: CS 4540 and [Ben Kempers and Trevor Koenig] - This work may not be copied for use in Academic Coursework.
+
+  I, Ben Kempers and Trevor Koenig, certify that I wrote this code from scratch and did not copy it in part or whole from
+  another source.  Any references used in the completion of the assignment are cited in my README file.
+
+  File Contents
+
+     Page that the TA is directed to after clicking on the name of student application in the application list to get
+     a more detailed view of the student's application.
+-->
+
+@model TAApplication.Models.Application
+@using Microsoft.EntityFrameworkCore
+@using TAApplication.Areas.Data
+@using Microsoft.AspNetCore.Identity
+@using TAApplication.Data
+@inject UserManager<TAUser> _um
+@inject TAContext _context
+
+@{
+    ViewData["Title"] = "Details";
+}
+<header>
+    <h2 class="secondary_header">TA Application Details</h2>
+    <p class="secondary_header_paragraph">
+        TA application details for student: @Html.DisplayFor(model => model.User.Name).
+        Student UID: @Html.DisplayFor(model => model.User.Uid).
+    </p>
+</header>
+
+<div class="card" style="max-width: 90%">
+    <div class="row g-3">
+        <div class="col-lg-4">
+            <div class="card mb-3" style="width: 18rem;">
+                <img src="../Images/evan.jpeg" class="card-img-top" alt="picture of Tony">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        <svg width="50" height="50">
+                            <circle cx="25" cy="25" r="20" stroke="black" stroke-width="4" fill="yellow" />
+                        </svg>
+                        @Html.DisplayFor(model => model.User.Name)
+                    </h5>
+                    <p class="card-text">
+                        @Html.DisplayNameFor(model => model.User.Uid): @Html.DisplayFor(model => model.User.Uid)
+                    </p>
+                    <p class="card-text">
+                        @Html.DisplayNameFor(model => model.currentDepartment): @Html.DisplayFor(model => model.currentDepartment)
+                    </p>
+                    <p class="card-text">
+                        @Html.DisplayNameFor(model => model.currentDegree): @Html.DisplayFor(model => model.currentDegree)
+                    </p>
+                    <p class="card-text">
+                        Notes:
+                        <ol>
+                            <li>Overconfident</li>
+                            <li>Crazy kid!</li>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div class="card-body">
+                <dl class="row">
+                    <dt class="col-md-3">@Html.DisplayNameFor(model => model.User.Email)</dt>
+                    <dd class="col-md-9">@Html.DisplayFor(model => model.User.Email)</dd>
+
+                    @*<dt class="col-md-3">@Html.DisplayNameFor(model => model.User.PhoneNumber)</dt>
+                    <dd class="col-md-9">@Html.DisplayFor(model => model.User.PhoneNumber)</dd>*@
+@*
+                    <dt class="col-md-3">Street Address</dt>
+                    <dd class="col-md-9">
+                        <p>650 W S Temple Bldg B302</p>
+                    </dd>
+
+                    <dt class="col-md-3">Position Sought</dt>
+                    <dd class="col-md-9">CS 1420 TA</dd>
+*@
+                    <dt class="col-md-3">@Html.DisplayNameFor(model => model.currentDegree)</dt>
+                    <dd class="col-md-9">@Html.DisplayFor(model => model.currentDegree)</dd>
+
+                    <dt class="col-md-3">@Html.DisplayNameFor(model => model.currentDepartment)</dt>
+                    <dd class="col-md-9">
+                        <p>@Html.DisplayFor(model => model.currentDepartment)</p>
+                    </dd>
+
+                    <div class="mb-3 form-check">
+                        <input type="checkbox" class="form-check-input" id="exampleCheck1" disabled>
+                        <label class="form-check-label" for="exampleCheck1">Permission to release academic records</label>
+                    </div>
+
+                    <dt class="col-md-3">@Html.DisplayNameFor(model => model.UofU_GPA)</dt>
+                    <dd class="col-md-9">@Html.DisplayFor(model => model.UofU_GPA)</dd>
+
+                    <dt class="col-md-3">@Html.DisplayNameFor(model => model.numSemesters)</dt>
+                    <dd class="col-md-9">@Html.DisplayFor(model => model.numSemesters)</dd>
+
+                    <dt class="col-md-3">@Html.DisplayNameFor(model => model.availableBefore)</dt>
+                    <dd class="col-md-9">@Html.DisplayFor(model => model.availableBefore)</dd>
+
+                    <dt class="col-md-3">@Html.DisplayNameFor(model => model.transferSchool)</dt>
+                    <dd class="col-md-9">@Html.DisplayFor(model => model.transferSchool)</dd>
+
+                    <dt class="col-md-3">Previous Experience</dt>
+                    <dd class="col-md-9">None</dd>
+
+                    <dt class="col-md-3">@Html.DisplayNameFor(model => model.desiredHours)</dt>
+                    <dd class="col-md-9">@Html.DisplayFor(model => model.desiredHours)</dd>
+
+                    <dt class="col-md-3">@Html.DisplayNameFor(model => model.personalStatement)</dt>
+                    <dd class="col-md-9">
+                        @Html.DisplayFor(model => model.personalStatement)
+                    </dd>
+
+                    <dt class="col-md-3">@Html.DisplayNameFor(model => model.linkedInURL)</dt>
+                    <dd class="col-md-9">@Html.DisplayFor(model => model.linkedInURL)</dd>
+
+                    <dt class="col-md-3">@Html.DisplayNameFor(model => model.resumeFileName)</dt>
+                    <dd class="col-md-9">@Html.DisplayFor(model => model.resumeFileName)</dd>
+
+                    <dt class="col-md-3">Hours Available</dt>
+                    @{
+                        string? userId = Model?.User.Id;
+                        var user = await _um.FindByIdAsync(userId);
+                        var minutes = 0;
+                        var times = await _context
+                        .Availability
+                        .Include(o => o.User)
+                        .FirstOrDefaultAsync(m => m.User.Id == user.Id);
+
+                        if (times != null)
+                        {
+                            foreach (var slot in times.WeekAvailability)
+                            {
+                                if(slot == '1')
+                                {
+                                    minutes += 15;
+                                }
+                            }
+                        }
+                        TimeSpan available = TimeSpan.FromMinutes(minutes);
+                    }
+                    <dd class="col-md-9">@available hours</dd>
+
+                    <dt class="col-md-3">Availability Calendar</dt>
+                    <dd class="col-md-9"><a asp-area="" asp-controller="Availabilities" asp-action="Availability" asp-route-id="@Model?.User.Id">@Model.User.Uid Availability</a></dd>
+                </dl>
+                <p><small class="text-muted">Application Submitted: September 8, 2022</small></p>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div>
+    Modified on: @Html.DisplayFor(model => model.ModificationDate) by <br />
+    @Html.DisplayFor(model => model.ModifiedBy).
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.ID">Edit</a> |
+    <a asp-action="Delete" asp-route-id="@Model?.ID">Delete</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

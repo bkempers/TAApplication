@@ -1,0 +1,52 @@
+﻿/**
+ * Author:    Ben Kempers & Trevor Koenig
+ * Date:      9/1/2022
+ * Course:    CS 4540, University of Utah, School of Computing
+ * Copyright: CS 4540 and [Ben Kempers and Trevor Koenig] - This work may not be copied for use in Academic Coursework.
+ *
+ * I, Ben Kempers and Trevor Koenig, certify that I wrote this code from scratch and did 
+ * not copy it in part or whole from another source.  Any references used 
+ * in the completion of the assignment are cited in my README file and in
+ * the appropriate method header.
+ *
+ * File Contents
+ *
+ *    This stylesheet contains the style guide for the Application List webpage. Specifically it contains the style guide
+ *    for things that are either not a part of the default guide or must be specifically changed for this page.
+ */
+
+/* 
+ * Used this website to combine table borders together:
+ * https://www.w3schools.com/css/css_table.asp
+*/
+.application_table {
+    margin-top: 125px;
+    border-collapse: collapse;
+    text-align: center;
+    width: 100%;
+}
+
+/*tr:nth-child(even){
+    background-color: grey;
+}*/
+
+#application_container {
+    margin: 75px 125px 125px 0px;
+}
+
+#list_img {
+    margin-bottom: 75px;
+    margin-left: 15px;
+    float: right;
+    height: 280px;
+    width: 435px;
+}
+
+#list_paragraph {
+    color: black;
+    vertical-align: middle;
+    margin-right: 5rem;
+    margin-left: 5rem;
+    text-indent: 30px;
+    font-size: 18px;
+}

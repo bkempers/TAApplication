@@ -1,0 +1,93 @@
+﻿<!--
+  Author:    Ben Kempers & Trevor Koenig
+  Date:      9/27/2022
+  Course:    CS 4540, University of Utah, School of Computing
+  Copyright: CS 4540 and [Ben Kempers and Trevor Koenig] - This work may not be copied for use in Academic Coursework.
+
+  I, Ben Kempers and Trevor Koenig, certify that I wrote this code from scratch and did not copy it in part or whole from
+  another source.  Any references used in the completion of the assignment are cited in my README file.
+
+  File Contents
+
+     Main landing page for TA application page. This page has some basic information about being a TA and comaints links to
+     the applicant list. This page also includes some images which are in the spirit of what being a TA means. Included is also
+     a log in button to confirm that you have proper credentials to access the applicant list.
+-->
+
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+<header>
+        <h2 class="header">School of Computing TA Application</h2>
+
+        <p class="header_paragraph">
+            Welcome to the School of Computing student TA application portal! Use the navigation bar at the top of this website to
+            navigate through the site, or read the paragraphs at the bottom to learn more about becoming a teachers assistant.
+        </p>
+    </header>
+
+    <div class="card d-flex justify-content-start" style="width: 18rem;">
+        <img src="Images/evan.jpeg" class="card-img-top" alt="TA of the Year 2021">
+        <div class="card-body">
+            <h5 class="card-title">2021 TA of the Year</h5>
+            <p class="card-text">Congradulate Evan for being the TA of the Year for 2021 for his amazing work as a TA and research assistant for CS3810!</p>
+        </div>
+    </div>
+
+    <hr>
+
+    <div class="card mb-3" style="width: 85%;">
+        <div class="row g-0">
+            <div class="col-md-4">
+                <img class="home_img_right" src="Images/teacher_assistant1.jpg" alt="Picture of TA helping students">
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h5 class="home_header_right card-title">Why Become a TA?</h5>
+                    <p class="home_paragraph card-text">
+                        Being a TA for the School of Computing is an invaluable opportunity every student should try and take advantage of. Becoming a TA will give you
+                        the opportunity to earn money while being on campus, meet and learn from some of the top students and teachers in their individual departments,
+                        gain more knowledge and experience in the specific class they choose to TA for, and develop relationships with SOC faculty.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card mb-3" style="width: 85%;">
+        <div class="row g-0">
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h5 class="card-title" id="home_header_left">What Responsibilities Comes With Being a TA?</h5>
+                    <p class="home_paragraph card-text">
+                        The responsibilities of being a TA include, but are not limited to: attending lecture, labratory, and office hours, being an excellent communicator
+                        for students and professors - by helping answer student questions and problems and suggesting and providing support to instructors, and any other
+                        additional needs that the instructor or students. Having excellent time management skills is also a requirement as TA's are excpected to be
+                        full time students as well.
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <img id="home_img_left" src="~/Images/TA_lab.jpg" alt="Picture of UofU CADE labs">
+            </div>
+        </div>
+    </div>
+
+    <div class="card mb-3" style="width: 85%;">
+        <div class="row g-0">
+            <div class="col-md-4">
+                <img class="home_img_right" src="~/Images/alex.jpg" alt="Picture of TA coding">
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h5 class="home_header_right card-title">What Benefits Comes With Being a TA?</h5>
+                    <p class="home_paragraph card-text">
+                        Being a TA has several different benefits along with those described above. TA's are generally required to work up to 20 hours a week, with the
+                        option of doing 'part time' work ranging from 10-15 hours. First semester TA's receieve $15/hour, with each subsequent semester receiving a
+                        raise of $1.00 that is capped at $20/hour.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>

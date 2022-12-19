@@ -1,0 +1,174 @@
+﻿/**
+ * Author:    Ben Kempers & Trevor Koenig
+ * Date:      9/8/2022
+ * Course:    CS 4540, University of Utah, School of Computing
+ * Copyright: CS 4540 and [Ben Kempers and Trevor Koenig] - This work may not be copied for use in Academic Coursework.
+ *
+ * I, Ben Kempers and Trevor Koenig, certify that I wrote this code from scratch and did 
+ * not copy it in part or whole from another source.  Any references used 
+ * in the completion of the assignment are cited in my README file and in
+ * the appropriate method header.
+ *
+ * File Contents
+ *
+ *    This file contains the main style guide for every page on this website. You could call this stylesheet the "default"
+ */
+
+/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
+for details on configuring this project to bundle and minify static web assets. */
+
+a.navbar-brand {
+  white-space: normal;
+  text-align: center;
+  word-break: break-all;
+}
+
+a {
+  color: #0077cc;
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
+}
+
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
+}
+
+.border-top {
+  border-top: 1px solid #e5e5e5;
+}
+.border-bottom {
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.box-shadow {
+  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+}
+
+button.accept-policy {
+  font-size: 1rem;
+  line-height: inherit;
+}
+
+.footer {
+  bottom: 0;
+  width: 100%;
+  white-space: nowrap;
+  line-height: 60px;
+}
+
+body {
+    margin: 0px;
+    margin-top: 100px;
+    padding: 0px;
+}
+
+
+/**
+* Used this website to help set up an initial styling of our navigation bar:
+* https://www.tutorialspoint.com/online_css_editor.php
+*/
+
+
+#nav_title {
+    height: 75px;
+    width: 75px;
+}
+
+
+header {
+    margin-top: 25px;
+    margin-left: 75px;
+    margin-right: 75px;
+}
+
+.header {
+    text-align: center;
+    font-weight: bolder;
+    font-size: 48px;
+}
+
+.container_right {
+    margin: 50px 125px 125px 125px;
+}
+
+#container_left {
+    margin: 125px 125px 125px 125px;
+}
+
+.header_paragraph {
+    text-align: center;
+    font-size: 20px;
+}
+
+.home_img_right {
+    float: right;
+    padding-left: 4rem;
+    padding-right: 2rem;
+    height: 280px;
+    width: 400px;
+}
+
+#home_img_left {
+    float: left;
+    padding-left: 5rem;
+    padding-right: 6rem;
+    height: 280px;
+    width: 435px;
+}
+
+.home_header_right {
+    color: red;
+    text-weight: bold;
+    font-size: 24px;
+    margin-left: 3rem;
+}
+
+#home_header_left {
+    color: red;
+    text-weight: bold;
+    font-size: 24px;
+}
+
+.home_paragraph {
+    color: black;
+    vertical-align: middle;
+    margin-right: 5rem;
+    margin-left: 5rem;
+    text-indent: 30px;
+    font-size: 18px;
+}
+
+.card {
+    margin: 0 auto;
+    float: none;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+#user_welcome {
+    float: right;
+    justify-content: center;
+    margin: 3px;
+}
+
+#account_welcome {
+    justify-content: center;
+    margin-right: 10px;
+}
+
+.secondary_header {
+    font-size: 36px;
+    font-weight: bolder;
+}
+
+.secondary_header_paragraph {
+    font-size: 24px;
+    margin-left: 20px;
+    margin-right: 20px;
+}

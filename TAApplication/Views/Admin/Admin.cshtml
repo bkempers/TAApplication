@@ -1,0 +1,120 @@
+﻿<!--
+  Author:    Ben Kempers & Trevor Koenig
+  Date:      9/25/2022
+  Course:    CS 4540, University of Utah, School of Computing
+  Copyright: CS 4540 and [Ben Kempers and Trevor Koenig] - This work may not be copied for use in Academic Coursework.
+
+  I, Ben Kempers and Trevor Koenig, certify that I wrote this code from scratch and did not copy it in part or whole from
+  another source.  Any references used in the completion of the assignment are cited in my README file.
+
+  File Contents
+
+     Admin page responsible for changing user roles
+-->
+@using TAApplication.Areas.Data
+@using Microsoft.AspNetCore.Identity;
+@model UserManager<TAUser>
+
+@{
+    ViewData["Title"] = "Admin";
+}
+
+<!-- Datatable CDN Link -->
+@section Styles{
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.css">
+    }
+    @section Scripts{
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('.table').DataTable();
+        });
+    </script>
+    }
+
+    <header>
+        <h2 class="secondary_header">Admin User Roles Page</h2>
+        <p class="secondary_header_paragraph">
+            Welcome Admin NAME, assign user roles here by flipping switches on users.
+        </p>
+    </header>
+
+
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">UID</th>
+                <th scope="col">Admin</th>
+                <th scope="col">Professor</th>
+                <th scope="col">Applicant</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!--
+                Used this webpage to create the following table code: https://www.yogihosting.com/aspnet-core-identity-create-read-update-delete-users/
+            -->
+        @foreach (TAUser user in Model.Users.ToArray<TAUser>())
+        {
+            <tr>
+                <th scope="row">@user.Name</th>
+                <td>@user.Uid</td>
+                <td>
+                    <div class="form-check form-switch">
+                        @if (await Model.IsInRoleAsync(user, "Administrator"))
+                        {
+                            <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" checked onclick="RoleRequest('No_Administrator', '@user.Id')">
+
+                        }
+                        else
+                        {
+                            <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" onclick="RoleRequest('Administrator', '@user.Id')">
+                        }
+                    </div>
+                </td>
+                <td>
+                    <div class="form-check form-switch">
+                        @if (await Model.IsInRoleAsync(user, "Professor"))
+                        {
+                            <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" checked onclick="RoleRequest('No_Professor', '@user.Id')">
+
+                        }
+                        else
+                        {
+                            <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" onclick="RoleRequest('Professor', '@user.Id')">
+                        }
+                    </div>
+                </td>
+                <td>
+                    <div class="form-check form-switch">
+                        @if (await Model.IsInRoleAsync(user, "Applicant"))
+                        {
+                            <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" checked onclick="RoleRequest('No_Applicant','@user.Id')">
+
+                        }
+                        else
+                        {
+                            <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" onclick="RoleRequest('Applicant', '@user.Id')">
+                        }
+                    </div>
+                </td>
+            </tr>
+        }
+
+    </tbody>
+</table>
+
+<script>
+    function RoleRequest(role, id) {
+        console.log(id);
+        $.post(
+            {
+                url: "/Admin/RoleRequest",
+                data: { role: role, id: id }
+            })
+            .done(function (data) {
+                console.log(data);
+            });
+    }
+</script>

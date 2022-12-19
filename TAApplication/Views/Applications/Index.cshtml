@@ -1,0 +1,45 @@
+﻿<!--
+  Author:    Ben Kempers & Trevor Koenig
+  Date:      10/6/2022
+  Course:    CS 4540, University of Utah, School of Computing
+  Copyright: CS 4540 and [Ben Kempers and Trevor Koenig] - This work may not be copied for use in Academic Coursework.
+
+  I, Ben Kempers and Trevor Koenig, certify that I wrote this code from scratch and did not copy it in part or whole from
+  another source.  Any references used in the completion of the assignment are cited in my README file.
+
+  File Contents
+
+     This page allows admins to view general information about the applications that have been made such as
+     the average GPA of applications and the number of applications.
+-->
+
+@model IEnumerable<TAApplication.Models.Application>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+@{
+    float averageGPA = 0;
+    int numApplications = Model.Count();
+}
+
+<h1>Index</h1>
+
+<p>
+    Total Number of Applications: @numApplications
+</p>
+
+<p>
+    @foreach (var item in Model) {
+        averageGPA += item.UofU_GPA;
+    }
+    @{
+        averageGPA /= numApplications;
+    }
+    Average GPA from Applications: @averageGPA
+</p>
+
+<p>
+    <a asp-area="" asp-controller="Applications" asp-action="List">List Page</a>
+</p>

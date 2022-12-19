@@ -1,0 +1,71 @@
+﻿@model TAApplication.Areas.Data.TAUser
+@using TAApplication.Areas.Data
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<TAUser> SignInManager
+@inject UserManager<TAUser> _um
+
+
+@{
+    ViewData["Title"] = "Availability";
+}
+
+<head>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/6.2.0/browser/pixi.js"></script>
+    <script type="text/javascript" src="~/js/availability_pixi.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            setup_pixi_stage(window.innerWidth/2, window.innerHeight/1.5);
+
+            // draw times & dates
+            set_time_day();
+
+            // draw time table lines
+            let availabilityTable = new AvailabilityTable();
+
+            app.stage.addChild(availabilityTable);
+        });
+    </script>
+
+</head>
+
+<h1>Availability for @Html.DisplayFor(model => model.Name)</h1>
+
+<p>
+    availability times table
+    <div id=saveWarning class="alert alert-danger" role="alert" style="visibility: hidden">
+        You have unsaved changes!
+    </div>
+    <div id=saveSuccess class="alert alert-success" role="alert" style="display: none">
+        Your availability was successfully saved.
+    </div>
+    <div id=saveError class="alert alert-warning" role="alert" style="display: none">
+        There was an issue saving your information! Please try again.
+    </div>
+    <div id="canvas_avail">
+
+    </div>
+</p>
+
+<div class="form-group">
+    @{
+        string studentId = Model?.Id;
+        Console.Write(studentId);
+    }
+    <button type="submit" value="Save" class="btn btn-primary" onclick="PostAvailabilityRequest(`@studentId`)">
+        <span class="load-spinner spinner-border spinner-border-sm" role="status" aria-hidden="true" style="display:none"></span>
+        <span class="load-spinner sr-only" style="display:none">Saving...</span>
+        <span id="save-text" style="display:block">Save</span>
+    </button>
+</div>
+
+<script>
+    $(function () {
+        // current users availability setup
+        @{string studentID = Model?.Id;}
+            console.log(`@studentID`);
+        let availabilities = GetAvailabilityRequest(`@studentID`);
+        console.log(availabilities);
+        set_availability_data(availabilities);
+    });
+</script>
